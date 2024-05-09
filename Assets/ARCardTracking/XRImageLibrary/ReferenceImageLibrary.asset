@@ -16,4 +16,44 @@ MonoBehaviour:
   m_GuidHigh: 0
   m_DataStore:
     m_Storage: []
-  m_Images: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5571948090721024148
+      m_GuidHigh: 15836812569013083286
+    m_SerializedTextureGuid:
+      m_GuidLow: 4748178637163813475
+      m_GuidHigh: 4781283657414446441
+    m_Size: {x: 0.1, y: 0.15428571}
+    m_SpecifySize: 1
+    m_Name: Tiger
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5303915977022449257
+      m_GuidHigh: 4486503922018635448
+    m_SerializedTextureGuid:
+      m_GuidLow: 6734169186439422727
+      m_GuidHigh: 2375595917417700729
+    m_Size: {x: 0.1, y: 0.14166667}
+    m_SpecifySize: 1
+    m_Name: Dog
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5048007065332088366
+      m_GuidHigh: 10928465320377051543
+    m_SerializedTextureGuid:
+      m_GuidLow: 11381824239355891403
+      m_GuidHigh: 15788778756362929515
+    m_Size: {x: 0.1, y: 0.13351135}
+    m_SpecifySize: 1
+    m_Name: Horse
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5049557952898091402
+      m_GuidHigh: 1427937322839149995
+    m_SerializedTextureGuid:
+      m_GuidLow: 4748178637163813475
+      m_GuidHigh: 4781283657414446441
+    m_Size: {x: 0.1, y: 0.15428571}
+    m_SpecifySize: 1
+    m_Name: Tiger
+    m_Texture: {fileID: 0}
