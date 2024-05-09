@@ -34,19 +34,23 @@ namespace Game.ARCardTracking
         {
             if(cardData.cardName == trackedImage.referenceImage.name)
             {
+                Debug.Log("Updating Tracked Object 1");
                 if (trackedObject != null)
                 {
+                    Debug.Log("Updating Tracked Object 2");
                     if(!trackedObject.activeInHierarchy)
                         trackedObject.SetActive(true);
                     Vector3 trackedImagePosition = trackedImage.transform.position;
                     Quaternion trackedImageRotation = trackedImage.transform.rotation;
-                
+                        
+                    Debug.Log("Updating Tracked Object 3");
                     trackedObject.transform.position = Vector3.Lerp(trackedObject.transform.position, trackedImagePosition, Time.deltaTime * positionLerpSpeed);
                     trackedObject.transform.rotation = Quaternion.Lerp(trackedObject.transform.rotation, trackedImageRotation, Time.deltaTime * rotationLerpSpeed);
                     trackedObject.transform.localScale = Vector3.Lerp(trackedObject.transform.localScale, Vector3.one * scaleFactor, Time.deltaTime * scaleLerpSpeed);
                 }
                 else
                 {
+                    Debug.Log("Adding Tracked Object");
                     AddTrackedObject(cardData.objectToShow, trackedImage.transform.position, trackedImage.transform.rotation, cardData.objectScale);
                 }
             }

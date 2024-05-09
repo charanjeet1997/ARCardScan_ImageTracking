@@ -53,11 +53,13 @@ namespace Game.ARCardTracking
         {
             foreach (var trackedImage in eventArgs.added)
             {
+                Debug.Log("Added");
                 OnTrackedImageUpdated(trackedImage);
             }
 
             foreach (var trackedImage in eventArgs.updated)
             {
+                Debug.Log("Updated");
                 OnTrackedImageUpdated(trackedImage);
             }
 
