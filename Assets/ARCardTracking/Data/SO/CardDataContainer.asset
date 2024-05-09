@@ -9,23 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: fe38bcbd5ec2448cb6812dec163d9d37, type: 3}
   m_Name: CardDataContainer
   m_EditorClassIdentifier: Assembly-CSharp:Game.ARCardTracking:CardDataContainer
   cardDataList:
-  - cardName: Dog
-    objectToShow: {fileID: 6036331658564139559, guid: adb11d902b2436d428d60c75729665a6,
+  - cardName: Tiger
+    objectToShow: {fileID: 6067091920609783031, guid: cf7f1989a74b86c4d8527d5676d887eb,
       type: 3}
     objectScale: 0.1
-  - cardName: Deer
-    objectToShow: {fileID: 4838970111423589469, guid: ca0dce541d7415341be48fdb82b4e9c7,
+  - cardName: Dog
+    objectToShow: {fileID: 6036331658564139559, guid: adb11d902b2436d428d60c75729665a6,
       type: 3}
     objectScale: 0.1
   - cardName: Horse
     objectToShow: {fileID: 7983073504308677812, guid: d5eb1b3748b88e245b2033ba7e2d3fa1,
       type: 3}
     objectScale: 0.1
-  - cardName: Tiger
-    objectToShow: {fileID: 6067091920609783031, guid: cf7f1989a74b86c4d8527d5676d887eb,
+  - cardName: Deer
+    objectToShow: {fileID: 4838970111423589469, guid: ca0dce541d7415341be48fdb82b4e9c7,
       type: 3}
     objectScale: 0.1

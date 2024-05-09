@@ -71,9 +71,23 @@ namespace Game.ARCardTracking
         
         private void OnTrackedImageUpdated(ARTrackedImage trackedImage)
         {
+            Debug.Log("Tracked Image Updated");
+            Debug.Log("Tracked Image name "+ trackedImage.referenceImage.name);
+            if(cardDataContainer == null)
+            {
+                Debug.LogError("Card Data Container is null");
+                return;
+            }
+            if(cardDataContainer.cardDataList == null)
+            {
+                Debug.LogError("Card Data List is null");
+                return;
+            }
             cardData = cardDataContainer.cardDataList.Find(x => x.cardName == trackedImage.referenceImage.name);
             if(cardData != null)
             {
+                Debug.Log("Card Data Found");
+                Debug.Log("Card Name "+ cardData.cardName);
                 stateHandlers[trackedImage.trackingState].HandleState(cardData, trackedObject, trackedImage);
             }
             //stateHandlers[trackedImage.trackingState].HandleState(trackedObject, trackedImage, trackedImage.trackingState);
