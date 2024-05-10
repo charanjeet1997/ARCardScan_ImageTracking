@@ -19,15 +19,16 @@ namespace Game.ARCardTracking
         GameObject trackedObject;
         Vector3 position;
         Quaternion rotation;
-        float scaleFactor;
         public void AddTrackedObject(GameObject objectToInstantiate, Vector3 position, Quaternion rotation, float scaleFactor)
         {
             if(trackedObject != null)
             {
                 Destroy(trackedObject);
             }
-            trackedObject = Instantiate(objectToInstantiate, position, rotation, transform);
-            trackedObject.transform.localScale = Vector3.one * scaleFactor;
+            trackedObject = Instantiate(objectToInstantiate, transform);
+            trackedObject.transform.localPosition = Vector3.zero;
+            trackedObject.transform.localRotation = Quaternion.identity;
+           // transform.localScale = Vector3.one * scaleFactor;
         }
 
         public void UpdateTrackedObject(CardData cardData,ARTrackedImage trackedImage)
@@ -42,11 +43,16 @@ namespace Game.ARCardTracking
                         trackedObject.SetActive(true);
                     Vector3 trackedImagePosition = trackedImage.transform.position;
                     Quaternion trackedImageRotation = trackedImage.transform.rotation;
-                        
+                    Vector3 trackedImageScale = trackedImage.transform.localScale;
+                    
                     Debug.Log("Updating Tracked Object 3");
-                    trackedObject.transform.position = Vector3.Lerp(trackedObject.transform.position, trackedImagePosition, Time.deltaTime * positionLerpSpeed);
-                    trackedObject.transform.rotation = Quaternion.Lerp(trackedObject.transform.rotation, trackedImageRotation, Time.deltaTime * rotationLerpSpeed);
-                    trackedObject.transform.localScale = Vector3.Lerp(trackedObject.transform.localScale, Vector3.one * scaleFactor, Time.deltaTime * scaleLerpSpeed);
+                    transform.position = Vector3.MoveTowards(transform.position, trackedImagePosition, Time.deltaTime * positionLerpSpeed);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, trackedImageRotation, Time.deltaTime * rotationLerpSpeed);
+                    transform.localScale = Vector3.MoveTowards(transform.localScale,  trackedImageScale * cardData.objectScale, Time.deltaTime * scaleLerpSpeed);
+                    
+                    // transform.position = trackedImagePosition;
+                    // transform.rotation = trackedImageRotation;
+                   // transform.localScale = trackedImageScale * scaleFactor;
                 }
                 else
                 {
