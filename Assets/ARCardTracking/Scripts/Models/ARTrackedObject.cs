@@ -15,6 +15,7 @@ namespace Game.ARCardTracking
         public float positionLerpSpeed = 10f;
         public float rotationLerpSpeed = 10f;
         public float scaleLerpSpeed = 10f;
+        private CardData cardData;
         
         GameObject trackedObject;
         Vector3 position;
@@ -31,9 +32,9 @@ namespace Game.ARCardTracking
            // transform.localScale = Vector3.one * scaleFactor;
         }
 
-        public void UpdateTrackedObject(CardData cardData,ARTrackedImage trackedImage)
+        public void UpdateTrackedObject(CardData data,ARTrackedImage trackedImage)
         {
-            if(cardData.cardName == trackedImage.referenceImage.name)
+            if(this.cardData != null && this.cardData.cardName == trackedImage.referenceImage.name)
             {
                 Debug.Log("Updating Tracked Object 1");
                 if (trackedObject != null)
@@ -48,21 +49,18 @@ namespace Game.ARCardTracking
                     Debug.Log("Updating Tracked Object 3");
                     transform.position = Vector3.MoveTowards(transform.position, trackedImagePosition, Time.deltaTime * positionLerpSpeed);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, trackedImageRotation, Time.deltaTime * rotationLerpSpeed);
-                    transform.localScale = Vector3.MoveTowards(transform.localScale,  trackedImageScale * cardData.objectScale, Time.deltaTime * scaleLerpSpeed);
-                    
-                    // transform.position = trackedImagePosition;
-                    // transform.rotation = trackedImageRotation;
-                   // transform.localScale = trackedImageScale * scaleFactor;
+                    transform.localScale = Vector3.MoveTowards(transform.localScale,  trackedImageScale * this.cardData.objectScale, Time.deltaTime * scaleLerpSpeed);
                 }
                 else
                 {
                     Debug.Log("Adding Tracked Object");
-                    AddTrackedObject(cardData.objectToShow, trackedImage.transform.position, trackedImage.transform.rotation, cardData.objectScale);
+                    AddTrackedObject(this.cardData.objectToShow, trackedImage.transform.position, trackedImage.transform.rotation, this.cardData.objectScale);
                 }
             }
             else
             {
                 StopTrackingObject();
+                this.cardData = data;
             }
            
         }
@@ -75,6 +73,7 @@ namespace Game.ARCardTracking
         
         public void StopTrackingObject()
         {
+            Debug.Log("Stopping Tracked Object");
             if(trackedObject != null)
                 Destroy(trackedObject);
         }

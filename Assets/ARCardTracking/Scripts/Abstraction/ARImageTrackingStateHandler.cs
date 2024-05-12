@@ -9,6 +9,7 @@ namespace Game.ARCardTracking
     /// </summary>
     public abstract class ARImageTrackingStateHandler
     {
+        public virtual void Initialize() { }
         public abstract void HandleState(CardData cardData, ARTrackedObject trackedObject, ARTrackedImage trackedImage);
     }
     
@@ -16,15 +17,39 @@ namespace Game.ARCardTracking
     {
         public override void HandleState(CardData cardData, ARTrackedObject trackedObject, ARTrackedImage trackedImage)
         {
+            Debug.Log("Tracked State Handler");
             trackedObject.UpdateTrackedObject(cardData,trackedImage);
         }
     }
     
     public class LimitedStateHandler : ARImageTrackingStateHandler
     {
+        float maxTime = 5f;
+        float currentTime = 0f;
+        
+        public override void Initialize()
+        {
+            currentTime = 0f;
+        }
         public override void HandleState(CardData cardData, ARTrackedObject trackedObject, ARTrackedImage trackedImage)
         {
-            trackedObject.PauseTrackingObject();
+            Debug.Log("Limited State Handler");
+            if (currentTime < maxTime)
+            {
+                currentTime += Time.deltaTime;
+            }
+            else
+            {
+                if (cardData.cardName == trackedImage.referenceImage.name)
+                {
+                    trackedObject.PauseTrackingObject();
+                }
+                else
+                {
+                    trackedObject.StopTrackingObject();
+                }
+                currentTime = 0f;
+            }
         }
     }
     
@@ -32,6 +57,7 @@ namespace Game.ARCardTracking
     {
         public override void HandleState(CardData cardData, ARTrackedObject trackedObject, ARTrackedImage trackedImage)
         {
+            Debug.Log("None State Handler");
             trackedObject.StopTrackingObject();
         }
     }

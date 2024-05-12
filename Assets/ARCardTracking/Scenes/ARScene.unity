@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionLerpSpeed: 6
   rotationLerpSpeed: 100
-  scaleLerpSpeed: 6
+  scaleLerpSpeed: 50
 --- !u!1 &725156633
 GameObject:
   m_ObjectHideFlags: 0
